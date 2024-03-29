@@ -1,0 +1,42 @@
+cluster:
+  clusterName: "my-local-cluster"  # Name of your local Kubernetes cluster
+  environmentGitOwner: "my-git-owner"  # Owner of the Git repository for environments
+  environmentGitPublic: true  # Whether the environment Git repository is public
+  project: "my-jx-project"  # Your project name
+  provider: minikube  # Cloud provider (e.g., minikube, kind, etc.)
+  zone: ""  # Zone where your cluster is located (not applicable for local clusters)
+
+gitops: true  # Enable GitOps mode
+
+environments:
+  - key: dev
+  - key: staging
+  - key: production
+
+ingress:
+  domain: "my-local-domain.com"  # Domain for ingress (customize as needed)
+  externalDNS: false  # Whether to use external DNS for ingress
+  tls:
+    email: "admin@example.com"  # Email for TLS certificate
+    enabled: false  # Enable TLS
+    production: false  # Use self-signed certificates for local development
+
+kaniko: true  # Use Kaniko for building container images
+
+secretStorage: local  # Secret storage method (local, vault, etc.)
+
+storage:
+  logs:
+    enabled: true  # Enable log storage
+    url: "file:///var/logs/jx"  # Local path for log storage
+  reports:
+    enabled: true  # Enable report storage
+    url: "file:///var/reports/jx"  # Local path for report storage
+  repository:
+    enabled: true  # Enable repository storage
+    url: "file:///var/repositories/jx"  # Local path for repository storage
+
+versionStream:
+  ref: "master"  # Git reference for version stream
+  url: "https://github.com/jenkins-x/jenkins-x-versions.git"  # URL for the Jenkins X versions repository
+  webhook: lighthouse  # Webhook type for version stream updates
